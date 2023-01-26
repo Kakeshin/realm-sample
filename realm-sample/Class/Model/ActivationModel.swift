@@ -11,6 +11,11 @@ struct ActivationModel {
     var activationId: String
     var activationCode: Int
 
+    init() {
+        self.activationId = ""
+        self.activationCode = -1
+    }
+
     init(activationId: String, activationCode: Int) {
         self.activationId = activationId
         self.activationCode = activationCode

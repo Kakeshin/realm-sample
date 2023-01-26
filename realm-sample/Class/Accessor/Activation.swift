@@ -9,28 +9,34 @@ import Foundation
 import RealmSwift
 
 final class Activation {
-    private static let kRealmSchemeVersion: UInt64 = 0
+    private let kRealmSchemeVersion: UInt64 = 1
 
-    private func settingRealm() -> Realm? {
+    private func getRealm() -> Realm? {
         var realm: Realm?
 
         do {
             var config = Realm.Configuration()
-            let libraryDic = NSSearchPathForDirectoriesInDomains(.libraryDirectory,
-                                                                 .userDomainMask,
-                                                                 true).first!
-            let filePath = "\(libraryDic)/Realm"
-
+            // Realmファイルを保存する場所を指定する
+            let libraryDirectory = NSSearchPathForDirectoriesInDomains(.libraryDirectory,
+                                                                       .userDomainMask,
+                                                                       true).first!
+            let filePath = "\(libraryDirectory)/Realm"
             try FileManager.default.createDirectory(atPath: filePath, withIntermediateDirectories: true)
 
             var fileUrl = URL(string: filePath)
             fileUrl = fileUrl?.appendingPathComponent("realm-sample").appendingPathExtension("realm")
 
             config.fileURL = fileUrl
-
+            config.schemaVersion = self.kRealmSchemeVersion
+            config.migrationBlock = { (migration, oldMigration) in
+                guard self.kRealmSchemeVersion > oldMigration else {
+                    print("Not migration")
+                    return
+                }
+            }
             realm = try Realm(configuration: config)
         } catch {
-
+            print("!! Realm Instance Error !!")
         }
 
         return realm
@@ -39,13 +45,13 @@ final class Activation {
 
 extension Activation {
     func addActivation(object: ActivationObject) -> Bool {
-        guard let realm = settingRealm() else {
+        guard let realm = getRealm() else {
             print("create realm failed")
             return false
         }
         do {
             try realm.write {
-                realm.add(object, update: .modified)
+                realm.add(object, update: .all)
             }
         } catch {
             print("add realm failed")

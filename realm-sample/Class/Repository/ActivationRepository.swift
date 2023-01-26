@@ -8,7 +8,7 @@
 import Foundation
 
 final class ActivationRepository {
-    private let dao: Activation = Activation()
+    private let dao = Activation()
 }
 
 extension ActivationRepository: ActivationRepositoryProtocol {

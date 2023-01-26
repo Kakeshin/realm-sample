@@ -24,8 +24,10 @@ final class ViewController: UIViewController {
     }
 
     @IBAction func buttonTapped(_ sender: UIButton) {
-        if let activationId =  activationIdTextField.text, let activationCode =  activationCodeTextField.text {
-            resultLabel.text = presenter.activationButtonTapped(activationId: activationId, activationCode: Int(activationCode)!)
+        if let activationId = activationIdTextField.text,
+           let activationCodeString = activationCodeTextField.text,
+           let activationCode = Int(activationCodeString) {
+            resultLabel.text = presenter.activationButtonTapped(activationId: activationId, activationCode: activationCode)
         }
     }
 }
