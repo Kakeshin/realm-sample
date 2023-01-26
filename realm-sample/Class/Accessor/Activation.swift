@@ -27,6 +27,8 @@ final class Activation {
             fileUrl = fileUrl?.appendingPathComponent("realm-sample").appendingPathExtension("realm")
 
             config.fileURL = fileUrl
+
+            realm = try Realm(configuration: config)
         } catch {
 
         }
@@ -37,12 +39,16 @@ final class Activation {
 
 extension Activation {
     func addActivation(object: ActivationObject) -> Bool {
-        guard let realm = settingRealm() else { return false }
+        guard let realm = settingRealm() else {
+            print("create realm failed")
+            return false
+        }
         do {
             try realm.write {
                 realm.add(object, update: .modified)
             }
         } catch {
+            print("add realm failed")
             return false
         }
         return true

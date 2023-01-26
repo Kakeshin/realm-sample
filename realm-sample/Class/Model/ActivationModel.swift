@@ -12,12 +12,12 @@ struct ActivationModel {
     var activationCode: Int
 
     init(activationId: String, activationCode: Int) {
-        activationId = activationId
-        activationCode = activationCode
+        self.activationId = activationId
+        self.activationCode = activationCode
     }
 
     init(object: ActivationObject) {
-        activationId = object.activationId
-        activationCode = object.activationCode
+        self.activationId = object.activationId
+        self.activationCode = object.activationCode
     }
 }
