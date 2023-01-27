@@ -8,7 +8,32 @@
 import Foundation
 import RealmSwift
 
-final class Activation {
+final class NameObject: Object {
+    @objc dynamic var name: String = ""
+    let activations = LinkingObjects(fromType: ActivationObject.self, property: "names")
+
+    init(name: String) {
+        self.name = name
+    }
+}
+
+final class ActivationObject: Object {
+    @objc dynamic var id: Int = 0
+    @objc dynamic var activationId: String = ""
+    @objc dynamic var activationCode: Int = -1
+    var names = List<NameObject>()
+
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+
+    convenience init(model: ActivationModel) {
+        self.init()
+
+        activationId = model.activationId
+        activationCode = model.activationCode
+    }
+
     private let kRealmSchemeVersion: UInt64 = 1
 
     private func getRealm() -> Realm? {
@@ -16,11 +41,12 @@ final class Activation {
 
         do {
             var config = Realm.Configuration()
-            // Realmファイルを保存する場所を指定する
             let libraryDirectory = NSSearchPathForDirectoriesInDomains(.libraryDirectory,
                                                                        .userDomainMask,
                                                                        true).first!
             let filePath = "\(libraryDirectory)/Realm"
+
+
             try FileManager.default.createDirectory(atPath: filePath, withIntermediateDirectories: true)
 
             var fileUrl = URL(string: filePath)
@@ -43,7 +69,7 @@ final class Activation {
     }
 }
 
-extension Activation {
+extension ActivationObject: ActivationProtocol {
     func addActivation(object: ActivationObject) -> Bool {
         guard let realm = getRealm() else {
             print("create realm failed")
@@ -58,5 +84,34 @@ extension Activation {
             return false
         }
         return true
+    }
+
+    func updateNames(model: ActivationModel) -> Bool {
+        guard let realm = getRealm() else {
+            print("create realm failed")
+            return false
+        }
+        let object = ActivationObject()
+        do {
+            try realm.write {
+                object.names = model.toList()
+                realm.add(object, update: .modified)
+            }
+        } catch {
+            print("add realm failed")
+            return false
+        }
+        return true
+    }
+}
+
+private extension ActivationModel {
+    func toList() -> List<NameObject> {
+        let ret = List<NameObject>()
+        let namesObject = self.names.map { model in
+            return NameObject(name: model.name)
+        }
+        ret.append(objectsIn: namesObject)
+        return ret
     }
 }

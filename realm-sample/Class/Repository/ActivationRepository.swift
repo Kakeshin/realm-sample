@@ -8,11 +8,15 @@
 import Foundation
 
 final class ActivationRepository {
-    private let dao = Activation()
+    private let dao: ActivationProtocol
+
+    init(dao: Activation) {
+        self.dao = dao
+    }
 }
 
 extension ActivationRepository: ActivationRepositoryProtocol {
     func addActivation(model: ActivationModel) -> Bool {
-        return dao.addActivation(object: ActivationObject(model: model))
+        return dao.addActivation(object: Activation(model: model))
     }
 }

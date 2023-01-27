@@ -17,10 +17,10 @@
 		C1D5DFE62982188D00A205B0 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C1D5DFE52982188D00A205B0 /* RealmSwift */; };
 		C1D5DFE8298218B200A205B0 /* Activation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFE7298218B200A205B0 /* Activation.swift */; };
 		C1D5DFED29821D2900A205B0 /* ActivationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFEC29821D2900A205B0 /* ActivationModel.swift */; };
-		C1D5DFEF29821E1300A205B0 /* ActivationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFEE29821E1300A205B0 /* ActivationObject.swift */; };
 		C1D5DFF12982214700A205B0 /* ActivationRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFF02982214700A205B0 /* ActivationRepository.swift */; };
 		C1D5DFF42982216800A205B0 /* ActivationRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFF32982216800A205B0 /* ActivationRepositoryProtocol.swift */; };
 		C1D5DFF72982235400A205B0 /* ActivationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFF62982235400A205B0 /* ActivationPresenter.swift */; };
+		C1D5DFF9298269A400A205B0 /* ActivationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D5DFF8298269A400A205B0 /* ActivationProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +34,10 @@
 		C1D5DFE02982167600A205B0 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C1D5DFE7298218B200A205B0 /* Activation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activation.swift; sourceTree = "<group>"; };
 		C1D5DFEC29821D2900A205B0 /* ActivationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationModel.swift; sourceTree = "<group>"; };
-		C1D5DFEE29821E1300A205B0 /* ActivationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationObject.swift; sourceTree = "<group>"; };
 		C1D5DFF02982214700A205B0 /* ActivationRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationRepository.swift; sourceTree = "<group>"; };
 		C1D5DFF32982216800A205B0 /* ActivationRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationRepositoryProtocol.swift; sourceTree = "<group>"; };
 		C1D5DFF62982235400A205B0 /* ActivationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationPresenter.swift; sourceTree = "<group>"; };
+		C1D5DFF8298269A400A205B0 /* ActivationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivationProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +114,7 @@
 		C1D5DFDE2982167600A205B0 /* Accessor */ = {
 			isa = PBXGroup;
 			children = (
+				C1D5DFF8298269A400A205B0 /* ActivationProtocol.swift */,
 				C1D5DFE7298218B200A205B0 /* Activation.swift */,
 			);
 			path = Accessor;
@@ -131,18 +132,9 @@
 		C1D5DFEA29821CD800A205B0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C1D5DFEB29821D2100A205B0 /* RealmObject */,
 				C1D5DFEC29821D2900A205B0 /* ActivationModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		C1D5DFEB29821D2100A205B0 /* RealmObject */ = {
-			isa = PBXGroup;
-			children = (
-				C1D5DFEE29821E1300A205B0 /* ActivationObject.swift */,
-			);
-			path = RealmObject;
 			sourceTree = "<group>";
 		};
 		C1D5DFF22982215500A205B0 /* Protocol */ = {
@@ -243,9 +235,9 @@
 				C1D5DFE8298218B200A205B0 /* Activation.swift in Sources */,
 				C1D5DFED29821D2900A205B0 /* ActivationModel.swift in Sources */,
 				C1D5DFBE298213F300A205B0 /* AppDelegate.swift in Sources */,
-				C1D5DFEF29821E1300A205B0 /* ActivationObject.swift in Sources */,
 				C1D5DFF42982216800A205B0 /* ActivationRepositoryProtocol.swift in Sources */,
 				C1D5DFC0298213F300A205B0 /* SceneDelegate.swift in Sources */,
+				C1D5DFF9298269A400A205B0 /* ActivationProtocol.swift in Sources */,
 				C1D5DFF72982235400A205B0 /* ActivationPresenter.swift in Sources */,
 				C1D5DFF12982214700A205B0 /* ActivationRepository.swift in Sources */,
 			);
